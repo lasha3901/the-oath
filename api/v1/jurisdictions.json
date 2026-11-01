@@ -1,0 +1,949 @@
+{
+  "jurisdictions" : [
+    {
+      "capital" : "Montgomery",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07"
+      ],
+      "fips" : "01",
+      "id" : "AL",
+      "kind" : "state",
+      "name" : "Alabama"
+    },
+    {
+      "capital" : "Juneau",
+      "districts" : [
+        "00"
+      ],
+      "fips" : "02",
+      "id" : "AK",
+      "kind" : "state",
+      "name" : "Alaska"
+    },
+    {
+      "capital" : "Phoenix",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09"
+      ],
+      "fips" : "04",
+      "id" : "AZ",
+      "kind" : "state",
+      "name" : "Arizona"
+    },
+    {
+      "capital" : "Little Rock",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "fips" : "05",
+      "id" : "AR",
+      "kind" : "state",
+      "name" : "Arkansas"
+    },
+    {
+      "capital" : "Sacramento",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38",
+        "39",
+        "40",
+        "41",
+        "42",
+        "43",
+        "44",
+        "45",
+        "46",
+        "47",
+        "48",
+        "49",
+        "50",
+        "51",
+        "52"
+      ],
+      "fips" : "06",
+      "id" : "CA",
+      "kind" : "state",
+      "name" : "California"
+    },
+    {
+      "capital" : "Denver",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "fips" : "08",
+      "id" : "CO",
+      "kind" : "state",
+      "name" : "Colorado"
+    },
+    {
+      "capital" : "Hartford",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05"
+      ],
+      "fips" : "09",
+      "id" : "CT",
+      "kind" : "state",
+      "name" : "Connecticut"
+    },
+    {
+      "capital" : "Dover",
+      "districts" : [
+        "00"
+      ],
+      "fips" : "10",
+      "id" : "DE",
+      "kind" : "state",
+      "name" : "Delaware"
+    },
+    {
+      "districts" : [
+        "98"
+      ],
+      "fips" : "11",
+      "id" : "DC",
+      "kind" : "federalDistrict",
+      "name" : "District of Columbia"
+    },
+    {
+      "capital" : "Tallahassee",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28"
+      ],
+      "fips" : "12",
+      "id" : "FL",
+      "kind" : "state",
+      "name" : "Florida"
+    },
+    {
+      "capital" : "Atlanta",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "fips" : "13",
+      "id" : "GA",
+      "kind" : "state",
+      "name" : "Georgia"
+    },
+    {
+      "capital" : "Honolulu",
+      "districts" : [
+        "01",
+        "02"
+      ],
+      "fips" : "15",
+      "id" : "HI",
+      "kind" : "state",
+      "name" : "Hawaii"
+    },
+    {
+      "capital" : "Boise",
+      "districts" : [
+        "01",
+        "02"
+      ],
+      "fips" : "16",
+      "id" : "ID",
+      "kind" : "state",
+      "name" : "Idaho"
+    },
+    {
+      "capital" : "Springfield",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17"
+      ],
+      "fips" : "17",
+      "id" : "IL",
+      "kind" : "state",
+      "name" : "Illinois"
+    },
+    {
+      "capital" : "Indianapolis",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09"
+      ],
+      "fips" : "18",
+      "id" : "IN",
+      "kind" : "state",
+      "name" : "Indiana"
+    },
+    {
+      "capital" : "Des Moines",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "fips" : "19",
+      "id" : "IA",
+      "kind" : "state",
+      "name" : "Iowa"
+    },
+    {
+      "capital" : "Topeka",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "fips" : "20",
+      "id" : "KS",
+      "kind" : "state",
+      "name" : "Kansas"
+    },
+    {
+      "capital" : "Frankfort",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06"
+      ],
+      "fips" : "21",
+      "id" : "KY",
+      "kind" : "state",
+      "name" : "Kentucky"
+    },
+    {
+      "capital" : "Baton Rouge",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06"
+      ],
+      "fips" : "22",
+      "id" : "LA",
+      "kind" : "state",
+      "name" : "Louisiana"
+    },
+    {
+      "capital" : "Augusta",
+      "districts" : [
+        "01",
+        "02"
+      ],
+      "fips" : "23",
+      "id" : "ME",
+      "kind" : "state",
+      "name" : "Maine"
+    },
+    {
+      "capital" : "Annapolis",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "fips" : "24",
+      "id" : "MD",
+      "kind" : "state",
+      "name" : "Maryland"
+    },
+    {
+      "capital" : "Boston",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09"
+      ],
+      "fips" : "25",
+      "id" : "MA",
+      "kind" : "state",
+      "name" : "Massachusetts"
+    },
+    {
+      "capital" : "Lansing",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13"
+      ],
+      "fips" : "26",
+      "id" : "MI",
+      "kind" : "state",
+      "name" : "Michigan"
+    },
+    {
+      "capital" : "Saint Paul",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "fips" : "27",
+      "id" : "MN",
+      "kind" : "state",
+      "name" : "Minnesota"
+    },
+    {
+      "capital" : "Jackson",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "fips" : "28",
+      "id" : "MS",
+      "kind" : "state",
+      "name" : "Mississippi"
+    },
+    {
+      "capital" : "Jefferson City",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "fips" : "29",
+      "id" : "MO",
+      "kind" : "state",
+      "name" : "Missouri"
+    },
+    {
+      "capital" : "Helena",
+      "districts" : [
+        "01",
+        "02"
+      ],
+      "fips" : "30",
+      "id" : "MT",
+      "kind" : "state",
+      "name" : "Montana"
+    },
+    {
+      "capital" : "Lincoln",
+      "districts" : [
+        "01",
+        "02",
+        "03"
+      ],
+      "fips" : "31",
+      "id" : "NE",
+      "kind" : "state",
+      "name" : "Nebraska"
+    },
+    {
+      "capital" : "Carson City",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "fips" : "32",
+      "id" : "NV",
+      "kind" : "state",
+      "name" : "Nevada"
+    },
+    {
+      "capital" : "Concord",
+      "districts" : [
+        "01",
+        "02"
+      ],
+      "fips" : "33",
+      "id" : "NH",
+      "kind" : "state",
+      "name" : "New Hampshire"
+    },
+    {
+      "capital" : "Trenton",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12"
+      ],
+      "fips" : "34",
+      "id" : "NJ",
+      "kind" : "state",
+      "name" : "New Jersey"
+    },
+    {
+      "capital" : "Santa Fe",
+      "districts" : [
+        "01",
+        "02",
+        "03"
+      ],
+      "fips" : "35",
+      "id" : "NM",
+      "kind" : "state",
+      "name" : "New Mexico"
+    },
+    {
+      "capital" : "Albany",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26"
+      ],
+      "fips" : "36",
+      "id" : "NY",
+      "kind" : "state",
+      "name" : "New York"
+    },
+    {
+      "capital" : "Raleigh",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "fips" : "37",
+      "id" : "NC",
+      "kind" : "state",
+      "name" : "North Carolina"
+    },
+    {
+      "capital" : "Bismarck",
+      "districts" : [
+        "00"
+      ],
+      "fips" : "38",
+      "id" : "ND",
+      "kind" : "state",
+      "name" : "North Dakota"
+    },
+    {
+      "capital" : "Columbus",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15"
+      ],
+      "fips" : "39",
+      "id" : "OH",
+      "kind" : "state",
+      "name" : "Ohio"
+    },
+    {
+      "capital" : "Oklahoma City",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05"
+      ],
+      "fips" : "40",
+      "id" : "OK",
+      "kind" : "state",
+      "name" : "Oklahoma"
+    },
+    {
+      "capital" : "Salem",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06"
+      ],
+      "fips" : "41",
+      "id" : "OR",
+      "kind" : "state",
+      "name" : "Oregon"
+    },
+    {
+      "capital" : "Harrisburg",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17"
+      ],
+      "fips" : "42",
+      "id" : "PA",
+      "kind" : "state",
+      "name" : "Pennsylvania"
+    },
+    {
+      "capital" : "Providence",
+      "districts" : [
+        "01",
+        "02"
+      ],
+      "fips" : "44",
+      "id" : "RI",
+      "kind" : "state",
+      "name" : "Rhode Island"
+    },
+    {
+      "capital" : "Columbia",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07"
+      ],
+      "fips" : "45",
+      "id" : "SC",
+      "kind" : "state",
+      "name" : "South Carolina"
+    },
+    {
+      "capital" : "Pierre",
+      "districts" : [
+        "00"
+      ],
+      "fips" : "46",
+      "id" : "SD",
+      "kind" : "state",
+      "name" : "South Dakota"
+    },
+    {
+      "capital" : "Nashville",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09"
+      ],
+      "fips" : "47",
+      "id" : "TN",
+      "kind" : "state",
+      "name" : "Tennessee"
+    },
+    {
+      "capital" : "Austin",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19",
+        "20",
+        "21",
+        "22",
+        "23",
+        "24",
+        "25",
+        "26",
+        "27",
+        "28",
+        "29",
+        "30",
+        "31",
+        "32",
+        "33",
+        "34",
+        "35",
+        "36",
+        "37",
+        "38"
+      ],
+      "fips" : "48",
+      "id" : "TX",
+      "kind" : "state",
+      "name" : "Texas"
+    },
+    {
+      "capital" : "Salt Lake City",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04"
+      ],
+      "fips" : "49",
+      "id" : "UT",
+      "kind" : "state",
+      "name" : "Utah"
+    },
+    {
+      "capital" : "Montpelier",
+      "districts" : [
+        "00"
+      ],
+      "fips" : "50",
+      "id" : "VT",
+      "kind" : "state",
+      "name" : "Vermont"
+    },
+    {
+      "capital" : "Richmond",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11"
+      ],
+      "fips" : "51",
+      "id" : "VA",
+      "kind" : "state",
+      "name" : "Virginia"
+    },
+    {
+      "capital" : "Olympia",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10"
+      ],
+      "fips" : "53",
+      "id" : "WA",
+      "kind" : "state",
+      "name" : "Washington"
+    },
+    {
+      "capital" : "Charleston",
+      "districts" : [
+        "01",
+        "02"
+      ],
+      "fips" : "54",
+      "id" : "WV",
+      "kind" : "state",
+      "name" : "West Virginia"
+    },
+    {
+      "capital" : "Madison",
+      "districts" : [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08"
+      ],
+      "fips" : "55",
+      "id" : "WI",
+      "kind" : "state",
+      "name" : "Wisconsin"
+    },
+    {
+      "capital" : "Cheyenne",
+      "districts" : [
+        "00"
+      ],
+      "fips" : "56",
+      "id" : "WY",
+      "kind" : "state",
+      "name" : "Wyoming"
+    },
+    {
+      "districts" : [
+        "98"
+      ],
+      "fips" : "60",
+      "id" : "AS",
+      "kind" : "territory",
+      "name" : "American Samoa"
+    },
+    {
+      "districts" : [
+        "98"
+      ],
+      "fips" : "66",
+      "id" : "GU",
+      "kind" : "territory",
+      "name" : "Guam"
+    },
+    {
+      "districts" : [
+        "98"
+      ],
+      "fips" : "69",
+      "id" : "MP",
+      "kind" : "territory",
+      "name" : "Northern Mariana Islands"
+    },
+    {
+      "districts" : [
+        "98"
+      ],
+      "fips" : "72",
+      "id" : "PR",
+      "kind" : "territory",
+      "name" : "Puerto Rico"
+    },
+    {
+      "districts" : [
+        "98"
+      ],
+      "fips" : "78",
+      "id" : "VI",
+      "kind" : "territory",
+      "name" : "U.S. Virgin Islands"
+    }
+  ],
+  "schemaVersion" : 1,
+  "sourceIds" : [
+    "census-state-codes",
+    "census-cd119-zcta",
+    "usgs-cities-towns"
+  ]
+}
