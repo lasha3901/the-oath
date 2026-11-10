@@ -6,6 +6,10 @@ Sources (the same ones USCIS points to on its Test Updates page):
     number of justices (2008), President's party (2008); accepted forms verbatim.
   - senate.gov member list (XML): each state's two U.S. Senators.
   - USA.gov state and territory pages: each Governor.
+  - Clerk of the U.S. House (MemberData.xml, the House's own structured member list):
+    each district's current Representative, and the nonvoting Delegates and Resident
+    Commissioner of D.C. and the territories. A vacant seat is published as an empty list,
+    never as a name. No HTML scraping: the Clerk publishes this file as XML.
 
 Usage:
   collect_dynamic_answers.py --out api/v1/dynamic_answers.json
@@ -24,6 +28,7 @@ import xml.etree.ElementTree as ET
 USCIS_URL = "https://www.uscis.gov/citizenship/testupdates"
 SENATE_URL = "https://www.senate.gov/general/contact_information/senators_cfm.xml"
 USAGOV_URL = "https://www.usa.gov/states/{slug}"
+HOUSE_URL = "https://clerk.house.gov/xml/lists/MemberData.xml"
 
 # Official question numbers → answer keys (from the USCIS question lists).
 NATIONAL_KEYS = {
@@ -100,6 +105,41 @@ def parse_senate(xml_text):
     return {state: sorted(names) for state, names in senators.items()}
 
 
+def parse_house(xml_text, jurisdictions):
+    """District id as the app writes it ("TX-18", at-large "AK-00", nonvoting "DC-98") →
+    the current member's official name, or [] for a vacant seat. Checked against the
+    districts the app knows, so a missing or unexpected seat stops the run."""
+    root = ET.fromstring(xml_text)
+    published = root.get("publish-date")
+    kinds = {j[0]: j[2] for j in jurisdictions}
+    seats = {}
+    for member in root.iter("member"):
+        code = (member.findtext("statedistrict") or "").strip()
+        if not re.fullmatch(r"[A-Z]{2}\d{2}", code):
+            continue
+        # The USPS code from the member's state element: "statedistrict" uses the Clerk's own
+        # prefixes (American Samoa is "AQ00"), the postal code is "AS".
+        state = (member.find("member-info/state").get("postal-code") if member.find("member-info/state") is not None else None) or code[:2]
+        number = code[2:]
+        if state not in kinds:
+            raise SourceError(f"House Clerk: unknown jurisdiction {code}")
+        # D.C. and the territories have one nonvoting seat; the app numbers it 98.
+        district = f"{state}-98" if kinds[state] != "state" else f"{state}-{number}"
+        name = (member.findtext("member-info/official-name") or "").strip()
+        if district in seats:
+            raise SourceError(f"House Clerk: {district} listed twice")
+        seats[district] = [name] if name else []
+    expected = {f"{j[0]}-{d}" for j in jurisdictions for d in j[3]}
+    unknown = sorted(set(seats) - expected)
+    if unknown:
+        raise SourceError(f"House Clerk: seats the app doesn't know: {unknown[:10]}")
+    voting = [d for d in expected if not d.endswith("-98")]
+    missing = sorted(d for d in voting if d not in seats)
+    if missing:
+        raise SourceError(f"House Clerk: no entry for voting districts {missing[:10]}")
+    return seats, published
+
+
 def parse_governor(page):
     lines = text_lines(page)
     for i, line in enumerate(lines):
@@ -113,7 +153,7 @@ def parse_governor(page):
 
 def load_jurisdictions(path):
     with open(path, encoding="utf-8") as handle:
-        return [(j["id"], j["name"], j["kind"]) for j in json.load(handle)["jurisdictions"]]
+        return [(j["id"], j["name"], j["kind"], j.get("districts", [])) for j in json.load(handle)["jurisdictions"]]
 
 
 def collect(jurisdictions):
@@ -121,8 +161,9 @@ def collect(jurisdictions):
     stamp = now.isoformat().replace("+00:00", "Z")
     national, reviewed = parse_uscis(fetch(USCIS_URL))
     senators = parse_senate(fetch(SENATE_URL))
+    representatives, house_published = parse_house(fetch(HOUSE_URL), jurisdictions)
     states, missing = {}, []
-    for code, name, kind in jurisdictions:
+    for code, name, kind, _ in jurisdictions:
         if kind == "federalDistrict":
             continue  # USCIS: D.C. has no Governor and no U.S. Senators.
         slug = re.sub(r"[^a-z]+", "-", name.lower()).strip("-")
@@ -147,14 +188,17 @@ def collect(jurisdictions):
             {"id": "uscis-testupdates", "url": USCIS_URL, "retrievedAt": stamp, "lastReviewed": reviewed},
             {"id": "senate-members", "url": SENATE_URL, "retrievedAt": stamp},
             {"id": "usagov-states", "url": "https://www.usa.gov/states-and-territories", "retrievedAt": stamp},
+            {"id": "house-clerk-members", "url": HOUSE_URL, "retrievedAt": stamp, "lastReviewed": house_published},
         ],
         "national": national,
         "states": states,
+        # Added in schema 1 as an optional key: apps that predate it ignore it.
+        "representatives": representatives,
     }
 
 
 def answers_only(data):
-    return {"national": data["national"], "states": data["states"]}
+    return {"national": data["national"], "states": data["states"], "representatives": data.get("representatives", {})}
 
 
 def main():
@@ -197,6 +241,10 @@ def main():
             a, b = old["states"].get(code), new["states"].get(code)
             if a != b:
                 lines.append(f"- **{code}**: {a} → {b}")
+        for district in sorted(set(old["representatives"]) | set(new["representatives"])):
+            a, b = old["representatives"].get(district), new["representatives"].get(district)
+            if a != b:
+                lines.append(f"- **{district} representative**: {a or 'vacant/none'} → {b or 'vacant/none'}")
         lines += ["", "Sources: " + ", ".join(s["url"] for s in fresh["sources"])]
         open(args.report, "w").write("\n".join(lines) + "\n")
         print("\n".join(lines))
