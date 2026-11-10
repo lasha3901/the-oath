@@ -20,3 +20,6 @@ Settings › Pages › Build and deployment › Source: **Deploy from a branch**
 2. Compare every value with the official pages listed in `sources`.
 3. Set `"reviewStatus": "approved"` and commit. The app rejects files that are not approved or don't validate, and keeps its last good copy.
 4. If an official page changed its layout and the script can't parse it, the check opens an issue instead. Update the script or the JSON by hand.
+
+## USCIS and the weekly check
+uscis.gov refuses requests from GitHub's runners (HTTP 403). The weekly check then compares the other sources and shows a warning in the run instead of opening an issue. Check USCIS by hand after elections or appointments, or run `--check` locally (it works from a home connection).
