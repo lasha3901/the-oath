@@ -8,7 +8,7 @@ Static GitHub Pages site for **The Oath – US Citizenship Test**: home, privacy
 | `api/v1/dynamic_answers.json` | Current officeholder answers, from official sources only |
 | `api/v1/apps_catalog.json` | "Discover More Apps" list |
 | `api/v1/jurisdictions.json` | States/DC/territories (input for the collector) |
-| `scripts/collect_dynamic_answers.py` | Collects answers from USCIS, senate.gov and USA.gov (stdlib Python) |
+| `scripts/collect_dynamic_answers.py` | Collects answers from USCIS, senate.gov, USA.gov and the Clerk of the House (stdlib Python) |
 | `.github/workflows/check-civics-answers.yml` | Weekly check; opens an issue on changes; never publishes |
 
 ## Enable GitHub Pages
