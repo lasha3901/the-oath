@@ -1,0 +1,42 @@
+# Weekly check of the official sources behind api/v1/dynamic_answers.json.
+# It never publishes: if anything changed (or a source can't be parsed), it opens an
+# issue for a person to review. Updating the JSON stays a manual, reviewed commit.
+name: Check official civics answers
+
+on:
+  schedule:
+    - cron: "23 14 * * 1"   # Mondays 14:23 UTC (weekly keeps Actions usage minimal)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compare published answers with official sources
+        id: check
+        continue-on-error: true
+        run: python3 scripts/collect_dynamic_answers.py --check api/v1/dynamic_answers.json --report report.md
+
+      - name: Open or update a review issue
+        if: steps.check.outcome == 'failure'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          title="Civics answers need review"
+          existing=$(gh issue list --state open --search "\"$title\" in:title" --json number --jq '.[0].number')
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body-file report.md
+          else
+            gh issue create --title "$title" --body-file report.md
+          fi
