@@ -156,10 +156,20 @@ def load_jurisdictions(path):
         return [(j["id"], j["name"], j["kind"], j.get("districts", [])) for j in json.load(handle)["jurisdictions"]]
 
 
-def collect(jurisdictions):
+def collect(jurisdictions, published=None, warnings=None):
+    """With `published` (check mode), a USCIS block keeps the published national answers and
+    adds a warning instead of failing: uscis.gov refuses requests from cloud runners (HTTP
+    403), and the other sources must still be checked every week."""
     now = datetime.datetime.now(datetime.timezone.utc).replace(microsecond=0)
     stamp = now.isoformat().replace("+00:00", "Z")
-    national, reviewed = parse_uscis(fetch(USCIS_URL))
+    try:
+        national, reviewed = parse_uscis(fetch(USCIS_URL))
+    except SourceError as error:
+        if published is None or warnings is None:
+            raise
+        warnings.append(f"USCIS not checked ({error}). Check {USCIS_URL} by hand or run the check locally.")
+        national = published["national"]
+        reviewed = next((s.get("lastReviewed") for s in published.get("sources", []) if s["id"] == "uscis-testupdates"), None)
     senators = parse_senate(fetch(SENATE_URL))
     representatives, house_published = parse_house(fetch(HOUSE_URL), jurisdictions)
     states, missing = {}, []
@@ -221,15 +231,19 @@ def main():
     if args.check:
         with open(args.check, encoding="utf-8") as handle:
             published = json.load(handle)
+        warnings = []
         try:
-            fresh = collect(jurisdictions)
+            fresh = collect(jurisdictions, published=published, warnings=warnings)
         except SourceError as error:
             open(args.report, "w").write(f"## Official source could not be checked\n\n{error}\n\nNothing was published. Check the source by hand.\n")
             print(error)
             return 1
+        for warning in warnings:
+            # A workflow annotation, not an issue: the block repeats every week.
+            print(f"::warning::{warning}")
         old, new = answers_only(published), answers_only(fresh)
         if old == new:
-            print("Official sources match the published answers.")
+            print("Official sources match the published answers." + (" (USCIS skipped)" if warnings else ""))
             return 0
         lines = ["## Official answers may have changed", "", "Nothing was published. Review against the official sources, then update and approve `api/v1/dynamic_answers.json`.", ""]
         for version in sorted(set(old["national"]) | set(new["national"])):
@@ -245,6 +259,7 @@ def main():
             a, b = old["representatives"].get(district), new["representatives"].get(district)
             if a != b:
                 lines.append(f"- **{district} representative**: {a or 'vacant/none'} → {b or 'vacant/none'}")
+        lines += [f"- {w}" for w in warnings]
         lines += ["", "Sources: " + ", ".join(s["url"] for s in fresh["sources"])]
         open(args.report, "w").write("\n".join(lines) + "\n")
         print("\n".join(lines))
